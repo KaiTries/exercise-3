@@ -43,7 +43,7 @@ to retrieve knowledge about the world — and to use that knowledge to manage a 
 ## Task 2 
 ### Task 2.1
 - Extend the [Glossary of terms](SAMOD/agriculture-domain/README.md) to define new terms that are required for describing the Motivating scenario and for defining its Competency questions
-- Update the [TBox](SAMOD/agriculture-domain/tbox.ttl) to formally define your new terms in an ontology. You can import the TBox in [Protege](https://protege.stanford.edu/) to work on top of the base ontology
+- Update the [TBox](SAMOD/agriculture-domain/tbox_solution.ttl) to formally define your new terms in an ontology. You can import the TBox in [Protege](https://protege.stanford.edu/) to work on top of the base ontology
 
 ### Task 2.2
 - Update the [ABox](SAMOD/agriculture-domain/abox.ttl) to complete the formal description of the motivating scenario

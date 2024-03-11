@@ -21,8 +21,8 @@ import com.google.gson.JsonObject;
 
 public class FarmKG extends Artifact {
 
-    private static final String USERNAME = "danai";
-    private static final String PASSWORD = "danai24";
+    private static final String USERNAME = "was-students";
+    private static final String PASSWORD = "knowledge-representation-is-fun";
 
     private String repoLocation;
 
@@ -128,6 +128,19 @@ public class FarmKG extends Artifact {
         // the variable where we will store the result to be returned to the agent
         Object[] sectionsValue = new Object[]{ "fakeSection1", "fakeSection2", "fakeSection3", "fakeSection4" };
 
+        String queryStr = PREFIXES + "SELECT ?section WHERE {\n" +
+                "<" + farm + "> a was:Farm.\n" +
+                "<" + farm + "> was:hasSection ?section.\n" +
+                "?section a was:Section. }";
+
+        JsonArray sectionBindings = executeQuery(queryStr);
+        for (int i = 0; i < sectionBindings.size(); i++) {
+            JsonObject sectionBinding = sectionBindings.get(i).getAsJsonObject();
+            JsonObject section = sectionBinding.getAsJsonObject("section");
+            sectionsValue[i] = section.getAsJsonPrimitive("value").getAsString();
+
+        }
+
         // sets the value of interest to the OpFeedbackParam
         sections.set(sectionsValue);
     }
@@ -136,6 +149,25 @@ public class FarmKG extends Artifact {
     public void querySectionCoordinates(String section, OpFeedbackParam<Object[]> coordinates) {
         // the variable where we will store the result to be returned to the agent
         Object[] coordinatesValue = new Object[]{ 0, 0, 1, 1 };
+
+        String queryStr = PREFIXES + "SELECT ?x1 ?y1 ?x2 ?y2 WHERE {\n" +
+                "<" + section + "> a was:Section.\n" +
+                "<" + section + "> was:isAt ?coordinates.\n" +
+                "?coordinates was:x1 ?x1.\n" +
+                "?coordinates was:x2 ?x2.\n" +
+                "?coordinates was:y1 ?y1.\n" +
+                "?coordinates was:y2 ?y2. }";
+
+        JsonArray coordinatesBindings = executeQuery(queryStr);
+        JsonObject firstBinding = coordinatesBindings.get(0).getAsJsonObject();
+        coordinatesValue[0] = firstBinding.get("x1").getAsJsonObject().get("value")
+                .getAsInt();
+        coordinatesValue[1] = firstBinding.get("y1").getAsJsonObject().get("value")
+                .getAsInt();
+        coordinatesValue[2] = firstBinding.get("x2").getAsJsonObject().get("value")
+                .getAsInt();
+        coordinatesValue[3] = firstBinding.get("y2").getAsJsonObject().get("value")
+                .getAsInt();
 
         // sets the value of interest to the OpFeedbackParam
         coordinates.set(coordinatesValue);
@@ -146,6 +178,14 @@ public class FarmKG extends Artifact {
         // the variable where we will store the result to be returned to the agent
         String cropValue = "fakeCrop";
 
+        String queryStr = PREFIXES + "SELECT ?crop WHERE {\n" +
+                "<" + section + "> a was:Section.\n" +
+                "<" + section + "> was:hasCrops ?crop. }";
+
+        JsonArray cropBindings = executeQuery(queryStr);
+        JsonObject firstBinding = cropBindings.get(0).getAsJsonObject();
+        JsonObject cropBinding = firstBinding.getAsJsonObject("crop");
+        cropValue = cropBinding.getAsJsonPrimitive("value").getAsString();
         // sets the value of interest to the OpFeedbackParam
         crop.set(cropValue);
     }
@@ -155,6 +195,14 @@ public class FarmKG extends Artifact {
         // the variable where we will store the result to be returned to the agent
         Integer moistureLevelValue = 120;
 
+        String queryStr = PREFIXES + "SELECT ?level WHERE {\n" +
+                "<" + crop + "> a was:Crop.\n" +
+                "<" + crop + "> was:hasMinMoistureLevel ?level. }";
+
+        JsonArray levelBindings = executeQuery(queryStr);
+        JsonObject firstBinding = levelBindings.get(0).getAsJsonObject();
+        JsonObject levelBinding = firstBinding.getAsJsonObject("level");
+        moistureLevelValue = levelBinding.getAsJsonPrimitive("value").getAsInt();
         // sets the value of interest to the OpFeedbackParam
         level.set(moistureLevelValue);
     }

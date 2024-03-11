@@ -1,0 +1,9 @@
+PREFIX was: <https://was-course.interactions.ics.unisg.ch/farm-ontology#>
+
+SELECT ?crop WHERE {
+GRAPH <https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#> {
+   bind (<https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#section1> as ?section)
+   ?section a was:Section.
+   ?section was:hasCrops ?crop.
+ }
+}

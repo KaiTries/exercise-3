@@ -1,0 +1,9 @@
+PREFIX was: <https://was-course.interactions.ics.unisg.ch/farm-ontology#>
+
+SELECT ?requiredMoistureLevel WHERE {
+GRAPH <https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#> {
+   bind (<https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#wheat> as ?crop)
+        ?crop a was:Crop.
+        ?crop was:hasMinMoistureLevel ?requiredMoistureLevel.
+ }
+}

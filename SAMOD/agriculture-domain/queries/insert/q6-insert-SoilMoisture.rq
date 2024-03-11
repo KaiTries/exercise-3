@@ -1,0 +1,33 @@
+PREFIX was: <https://was-course.interactions.ics.unisg.ch/farm-ontology#>
+PREFIX td: <https://www.w3.org/2019/wot/td#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+INSERT {
+    GRAPH <https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#>
+    {
+        ?newSoilMoisture1 a was:SoilMoisture;
+            td:title "A moisture level for a section.";
+	        td:hasBase <http://localhost:1080/api/soilMoisture/1/>;
+            was:currentMoistureLevel "40"^^xsd:integer.
+
+        ?newSoilMoisture2 a was:SoilMoisture;
+            td:title "A moisture level for a section.";
+	        td:hasBase <http://localhost:1080/api/soilMoisture/2/>;
+            was:currentMoistureLevel "44"^^xsd:integer.
+
+        ?newSoilMoisture3 a was:SoilMoisture;
+            td:title "A moisture level for a section.";
+	        td:hasBase <http://localhost:1080/api/soilMoisture/3/>;
+            was:currentMoistureLevel "45"^^xsd:integer.
+
+        ?newSoilMoisture4 a was:SoilMoisture;
+            td:title "A moisture level for a section.";
+	        td:hasBase <http://localhost:1080/api/soilMoisture/4/>;
+            was:currentMoistureLevel "42"^^xsd:integer.
+    }.
+} WHERE {
+	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#soilMoisture1") AS ?newSoilMoisture1)
+	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#soilMoisture2") AS ?newSoilMoisture2)
+	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#soilMoisture3") AS ?newSoilMoisture3)
+	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#soilMoisture4") AS ?newSoilMoisture4)
+}

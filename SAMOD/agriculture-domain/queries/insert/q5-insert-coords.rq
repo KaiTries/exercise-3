@@ -1,0 +1,45 @@
+PREFIX was: <https://was-course.interactions.ics.unisg.ch/farm-ontology#>
+PREFIX td: <https://www.w3.org/2019/wot/td#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+INSERT {
+    GRAPH <https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#>
+    {
+        ?coordinates1 a td:Thing, was:Coordinates;
+            td:title "A coordinate within the farm land.";
+            td:hasBase <http://localhost:1080/api/coordinates/1/>;
+            was:x1 "0"^^xsd:integer;
+            was:y1 "0"^^xsd:integer;
+            was:x2 "1"^^xsd:integer;
+            was:y2 "1"^^xsd:integer.
+
+        ?coordinates2 a td:Thing, was:Coordinates;
+            td:title "A coordinate within the farm land.";
+            td:hasBase <http://localhost:1080/api/coordinates/2/>;
+            was:x1 "1"^^xsd:integer;
+            was:y1 "0"^^xsd:integer;
+            was:x2 "2"^^xsd:integer;
+            was:y2 "1"^^xsd:integer.
+
+        ?coordinates3 a td:Thing, was:Coordinates;
+            td:title "A coordinate within the farm land.";
+            td:hasBase <http://localhost:1080/api/coordinates/3/>;
+            was:x1 "0"^^xsd:integer;
+            was:y1 "1"^^xsd:integer;
+            was:x2 "1"^^xsd:integer;
+            was:y2 "2"^^xsd:integer.
+
+        ?coordinates4 a td:Thing, was:Coordinates;
+            td:title "A coordinate within the farm land.";
+            td:hasBase <http://localhost:1080/api/coordinates/4/>;
+            was:x1 "1"^^xsd:integer;
+            was:y1 "1"^^xsd:integer;
+            was:x2 "2"^^xsd:integer;
+            was:y2 "2"^^xsd:integer.
+    }.
+} WHERE {
+  	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#coordinates1") AS ?coordinates1)
+  	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#coordinates2") AS ?coordinates2)
+  	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#coordinates3") AS ?coordinates3)
+  	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#coordinates4") AS ?coordinates4)
+}

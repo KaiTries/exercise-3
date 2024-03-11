@@ -1,0 +1,20 @@
+PREFIX was: <https://was-course.interactions.ics.unisg.ch/farm-ontology#>
+PREFIX td: <https://www.w3.org/2019/wot/td#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+INSERT {
+    GRAPH <https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#>
+    {
+        ?wheat a was:Crop, was:Wheat;
+        	td:title "A crop of type wheat.";
+         	was:hasMinMoistureLevel "120"^^xsd:integer.
+
+        ?corn a was:Crop, was:Corn;
+        	td:title "A crop of type corn.";
+         	was:hasMinMoistureLevel "80"^^xsd:integer.
+    }.
+} WHERE {
+    BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#wheat") AS ?wheat)
+	BIND(IRI("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-kai#corn") AS ?corn)
+}
